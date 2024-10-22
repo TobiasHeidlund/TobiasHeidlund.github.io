@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with: hostPage
+        with: publish
       - name: Merge Main
         run: git merge origin main 
       - name: Set up Node
@@ -26,4 +26,10 @@ jobs:
         run: npm run build
       - name: Remove Modules 
         run: rm -rf node_modules
+      - name: push back
+        run: git add -f Dist
+      - name: commit
+        run: git commit -m "newV"
+      - name: push
+        run: git push
       

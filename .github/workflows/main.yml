@@ -1,0 +1,29 @@
+name: Unit test
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with: hostPage
+      - name: Merge Main
+        run: git merge origin main 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+            node-version: 'latest'
+      - name: Build project
+        run: npm install
+      - name: Serve
+        run: npm install -g serve
+      - name: Build
+        run: npm run build
+      - name: Remove Modules 
+        run: rm -rf node_modules
+      
